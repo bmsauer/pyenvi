@@ -15,11 +15,17 @@ a pure python library.
 ##Brief usage:
 
 pyenvi = PyEnvi({"name":"Brian"})           #initialize environment variable "name" to "Brian"
+
 pyenvi.start()                              #must be called to use variables
+
 pyenvi.set("color":"blue")                  #sets new environment variable or updates old one
+
 pyenvi.get("color")                         #returns environment variable
+
 PyEnvi.get_instance()                       #get singleton instance from anywhere in code
+
 PyEnvi.stop()                               #shut down PyEnvi
+
 
 ## Method Description:
 
@@ -97,10 +103,10 @@ PyEnvi.stop()                               #shut down PyEnvi
             """
 
 ##Possible Improvements:
-    -Support for variables over a network
-    -Variable persistance from start to stop
+- Support for variables over a network
+- Variable persistance from start to stop
 
 ##TODO / Open Issues:
-    -Process leak on non-clean exit
-    -Better tests (see test file)
-    -Documentation
+- Process leak on non-clean exit
+- Better tests (see test file)
+- Documentation
