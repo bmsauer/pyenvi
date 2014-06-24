@@ -7,6 +7,9 @@ import atexit
 from .exceptions import *
 
 def cleanup():
+    """
+    The cleanup function, executed on program close.
+    """
     if PyEnvi.get_instance().is_running() == True:
         PyEnvi.get_instance().subp.kill()
         PyEnvi.get_instance().subp = None

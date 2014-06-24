@@ -3,11 +3,18 @@ import json
 
 
 def send_message(message):
-    message+="\n"
+    """
+    Send a message back to PyEnvi.  Params: a string message."
+    """
+    message= str(message)+"\n"
     sys.stdout.write(message)
     sys.stdout.flush()
 
 def main():
+    """
+    The main loop for the sub process.  Waits for commands written to pipe
+    and writes responses back to PyEnvi.
+    """
     if len(sys.argv)<=1:
         raise Exception("Too few arguments") #TODO: add custom exception
     
