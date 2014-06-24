@@ -4,7 +4,8 @@ import shutil
 modules = [
     "pyenvi.pyenvi",
     "pyenvi.exceptions",
-    "pyenvi.pyenvi_run"
+    "pyenvi.pyenvi_run",
+    "test"
 ]
 
 for module in modules:

@@ -6,14 +6,6 @@ import atexit
 
 from .exceptions import *
 
-def cleanup():
-    """
-    The cleanup function, executed on program close.
-    """
-    if PyEnvi.get_instance().is_running() == True:
-        PyEnvi.get_instance().subp.kill()
-        PyEnvi.get_instance().subp = None
-
 class PyEnvi(object):
     """
     PyEnvi: environment variable simulator to multi process python applications.
@@ -28,6 +20,16 @@ class PyEnvi(object):
         if PyEnvi._instance == None:
             PyEnvi._instance = PyEnvi()
         return PyEnvi._instance
+        
+    def cleanup():
+        """
+        The cleanup function, executed on program close.
+        """
+        try:
+            PyEnvi.get_instance().subp.kill()
+        except AttributeError:
+            pass
+        PyEnvi.get_instance().subp = None
     
     def __init__(self,environment_variables={}):
         """
@@ -69,7 +71,7 @@ class PyEnvi(object):
             environment_vars_string = shlex.quote(json.dumps(self.environment_variables))
             self.subp = subprocess.Popen(["python",os.path.join(os.path.dirname(__file__),"pyenvi_run.py"),environment_vars_string],stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True) 
         
-        atexit.register(cleanup)
+        atexit.register(PyEnvi.cleanup)
     
     def stop(self):
         """

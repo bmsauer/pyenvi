@@ -14,17 +14,19 @@ a pure python library.
 
 ##Brief usage:
 
-pyenvi = PyEnvi({"name":"Brian"})           #initialize environment variable "name" to "Brian"
-
-pyenvi.start()                              #must be called to use variables
-
-pyenvi.set("color":"blue")                  #sets new environment variable or updates old one
-
-pyenvi.get("color")                         #returns environment variable
-
-PyEnvi.get_instance()                       #get singleton instance from anywhere in code
-
-PyEnvi.stop()                               #shut down PyEnvi
+    from pyenvi.pyenvi import PyEnvi
+    
+    pyenvi = PyEnvi({"name":"Brian"})           #initialize environment variable "name" to "Brian"
+    
+    pyenvi.start()                              #must be called to use variables
+    
+    pyenvi.set("color":"blue")                  #sets new environment variable or updates old one
+    
+    pyenvi.get("color")                         #returns environment variable
+    
+    PyEnvi.get_instance()                       #get singleton instance from anywhere in code
+    
+    PyEnvi.stop()                               #shut down PyEnvi
 
 
 ## Module Description:
@@ -35,6 +37,4 @@ See files in docs folder.
 - Variable persistance from start to stop
 
 ##TODO / Open Issues:
-- Process leak on non-clean exit
 - Better tests (see test file)
-- Documentation generation

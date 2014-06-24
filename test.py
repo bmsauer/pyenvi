@@ -14,19 +14,24 @@ class PyEnviTest(unittest.TestCase):
     """
     
     def setUp(self):
+        """
+        Clear any outstanding processes, instances, and start a new one.
+        """
+        PyEnvi.cleanup()
+        PyEnvi._instance = None
+        
         PyEnvi.get_instance()
             
     def tearDown(self):
+        """
+        Close gracefully, then call cleanup just in case.
+        """
         try:
-            pyenvi.stop()
-        except Exception:
+            PyEnvi.get_instance().stop()
+        except NotRunningError:
             pass
+        PyEnvi.cleanup()
         
-        if PyEnvi.get_instance().subp!=None:
-            PyEnvi.get_instance().subp.kill()
-            PyEnvi.get_instance().subp = None
-        PyEnvi._instance = None
-            
     def test_get_instance(self):
         """
         PyEnvi.get_instance() test plan:
@@ -209,6 +214,7 @@ class PyEnviTest(unittest.TestCase):
             return "value"
         pyenvi = PyEnvi.get_instance()
         pyenvi.start()
+        self.parse_response = mock_parse_response
         response = pyenvi.send_message(pyenvi.create_message("actionname","datathing"))
         self.assertEqual(response,"_UNKNOWN_ACTION")
         
