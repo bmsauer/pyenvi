@@ -109,4 +109,4 @@ PyEnvi.stop()                               #shut down PyEnvi
 ##TODO / Open Issues:
 - Process leak on non-clean exit
 - Better tests (see test file)
-- Documentation
+- Documentation generation
