@@ -28,7 +28,7 @@ PyEnvi.stop()                               #shut down PyEnvi
 
 
 ## Module Description:
-    See files in docs folder.
+See files in docs folder.
 
 ##Possible Improvements:
 - Support for variables over a network
